@@ -1,0 +1,1230 @@
+
+       echo '<pre>';
+       var_dump($path);
+       echo '<pre>';
+       exit;
+
+
+          echo '<script>console.log("Your stuff here")</script>';
+
+protected const FLASH_KEY = 'flash_messages';
+
+
+
+    public function __construct()
+    {
+
+        session_start();
+        $flshMessages = $_SESSION[self::FLASH_KEY] ??[];
+        foreach($flashMessages as $key => $flashMessage)
+        {
+            $flashMessage['remove'] = true;
+        }
+        $_SESSION[self::FLASH_KEY]=$flashMessages;
+        
+       echo '<pre>';
+       var_dump( $_SESSION[self::FLASH_KEY]);
+       echo '<pre>';
+       
+
+    }
+
+public function setFleshMethod($key,$message)
+{
+    $_SESSION[self::FLASH_KEY][$key]=[
+        'remove'=> false,
+        'value'=> $message
+    ];
+}
+
+public function getFleshMethod($key)
+{
+
+}
+
+
+public function __destruct()
+{
+
+
+}
+
+
+php -S localhost:8000
+
+
+
+
+
+namespace app\models;
+use app\core\Application;
+
+class LoginModel extends BaseModel
+{
+
+public string $email='';
+public string $password='';
+
+public function rules(): array
+{
+
+    return[
+        'emai'=>[self::RULE_REQUIRED,self::RULE_RULE_EMAIL],
+        'password'=>[self::RULE_REQUIRED]
+    ];
+
+}
+
+
+public function login()
+{
+    $user=User::findOne(['email'=>$this->email]);
+
+    if(!$user)
+    {
+        $this->addError('email','User does not exist');
+        return false;
+    }
+    if(!password_verify($this->password,$user->password))
+    {
+        $this->addError('passowrd','password is incorrect');
+        return false;
+    }
+
+    echo '<pre>';
+    var_dump($user);
+    echo '<pre>';
+    exit;
+
+     return Application::$app->login($user);
+}
+
+
+}
+
+
+
+ <?php elseif (Application::$app->$user->FindDoctor(Application::$app->user->getFristname())):?>
+
+
+        <a class="nav-link" style=" color:aliceblue !important;" href="/logout">Welcome Dr.<?php echo Application::$app->$user->getLastName() ?>!
+        (Logout)
+        </a>
+
+
+
+
+
+
+
+  $chatIds=[];
+                    foreach($result as $item)
+                    {
+                        $chatIds[]=intval($item['chatId']);
+                        $chatSql = implode(" OR ",array_map(fn($attr) => "chatId = $attr",$chatIds));
+                       
+                    }
+                    $stmt2 =self::prepare("SELECT * FROM chatrooms WHERE $chatSql");
+                                        try{
+                                            $stmt2->execute();
+                                            $result2 = $stmt2->fetchAll();
+                                            return $result2;
+
+                                            if(is_array($result2) && count($result2)>0)
+                                            {         
+                                            return  $result2;
+                                            }
+                                            else
+                                            {
+                                                return false;
+                                            }
+                                        
+                                        } 
+                                        catch (Exception $e) 
+                                        {
+                                            echo $e->getMessage();
+                                        }
+
+
+        var target=setTarget.split(" ");
+        var x; 
+        senders.forEach((item,i)=>{  
+            if(item.firstname==target[0])
+            {
+                    x=item;
+                    return;
+            }
+        }); 
+
+
+        messages = messages.filter( item=> (x.id ==item.toUserId) || (x.id==item.fromUserId));
+        msgs="";
+        messages.forEach(msg=>{
+            
+            if(msg.toUserId!=x.id)
+            {
+            msgs+=
+            '<div class="incoming_msg">'+
+            '<div class="incoming_msg_img"> <img src="/img/img11.jpg" alt="sunil"> </div>'+
+            '<div class="received_msg">'+
+                '<div class="received_withd_msg">'+
+                '<p>'+msg.msg+'</p>'+
+                '<span class="time_date"> 11:01 AM    |    June 9</span></div>'+
+            '</div>'+
+            '</div>';
+            }
+            else
+            {
+                msgs+=
+                '<div class="outgoing_msg">'+
+                    '<div class="sent_msg">'+
+                    '<p>'+msg.msg+'</p>'+
+                    '<span class="time_date"> 11:01 AM    |    June 9</span> </div>'+
+                '</div>';
+            }
+        });
+        document.getElementById('msg_history').innerHTML="";
+        document.getElementById('msg_history').innerHTML+=msgs;
+        */
+
+
+
+
+
+
+
+
+        //============================================main=============================================
+
+
+<?php
+
+use app\core\Application;
+
+?>
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+
+    <title>Trinity Recovery</title>
+  </head>
+  <body>
+
+ 
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+           
+            <li class="nav-item">
+              <a class="nav-link" href="/appointment">Appointments</a>
+            </li>
+
+            <li class="nav-item">
+              <a class="nav-link" href="/pricing">Pricing</a>
+            </li>
+
+            
+            <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact A Doctor</a>
+            </li>
+           
+          </ul>
+          
+        
+        </div>
+
+
+        <a class="navbar-brand " href="/">Trinity Recovery</a>
+
+      <?php if (Application::IsGuest()): ?>
+
+          <a class="nav-link" style=" color:aliceblue !important;" href="/register">Register</a>
+          <a class="nav-link" style=" color:aliceblue !important;" href="/login">Login</a>
+
+      <?php elseif(Application::$app->user->FindDoctor()):?>
+
+          <a class="nav-link" style=" color:aliceblue !important;" href="/logout">Welcome Dr. <?php echo Application::$app->user->getLastName() ?>!
+          (Logout)
+          </a>
+
+      <?php else:?>
+
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/logout">Welcome <?php echo Application::$app->user->getUserName() ?>!
+              (Logout)
+              </a>
+            </li>
+          </ul>
+
+      <?php endif;?>
+
+      </nav>
+    </header>
+
+
+    <?php if(Application::$app->session->getFlash('success')):?>
+
+      <div class="toast" style="position: absolute; top: 0; right: 0; z-index:5000;"  role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <strong class="mr-auto">Thank You!</strong>
+          <small>1 min ago</small>
+        
+        </div>
+        <div class="toast-body">
+        <?php echo Application::$app->session->getFlash('success')?>
+        </div>
+      </div>
+    
+    <?php endif; ?>
+   
+
+    {{Content}}
+
+      <!-- FOOTER -->
+     
+    <footer class="container py-5">
+      <div class="row">
+        <div class="col-12 col-md">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="d-block mb-2"><circle cx="12" cy="12" r="10"></circle><line x1="14.31" y1="8" x2="20.05" y2="17.94"></line><line x1="9.69" y1="8" x2="21.17" y2="8"></line><line x1="7.38" y1="12" x2="13.12" y2="2.06"></line><line x1="9.69" y1="16" x2="3.95" y2="6.06"></line><line x1="14.31" y1="16" x2="2.83" y2="16"></line><line x1="16.62" y1="12" x2="10.88" y2="21.94"></line></svg>
+          <small class="d-block mb-3 text-muted">&copy; 2017-2018</small>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Features</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Cool stuff</a></li>
+            <li><a class="text-muted" href="#">Random feature</a></li>
+            <li><a class="text-muted" href="#">Team feature</a></li>
+            <li><a class="text-muted" href="#">Stuff for developers</a></li>
+            <li><a class="text-muted" href="#">Another one</a></li>
+            <li><a class="text-muted" href="#">Last time</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Resources</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Resource</a></li>
+            <li><a class="text-muted" href="#">Resource name</a></li>
+            <li><a class="text-muted" href="#">Another resource</a></li>
+            <li><a class="text-muted" href="#">Final resource</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>Resources</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Business</a></li>
+            <li><a class="text-muted" href="#">Education</a></li>
+            <li><a class="text-muted" href="#">Government</a></li>
+            <li><a class="text-muted" href="#">Gaming</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-md">
+          <h5>About</h5>
+          <ul class="list-unstyled text-small">
+            <li><a class="text-muted" href="#">Team</a></li>
+            <li><a class="text-muted" href="#">Locations</a></li>
+            <li><a class="text-muted" href="#">Privacy</a></li>
+            <li><a class="text-muted" href="#">Terms</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+    <script>
+      //starts the carousel
+    </script>
+  </body>
+</html>
+        //=========================home=================================================================
+
+<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
+        <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="./img/img10.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Trinity Recovery</h5>
+            <p>Trinity Recovery focuses on ports medicine and injury Recovery for athletes of all levels! 
+              We have help athletes from pee wee football the junior olymipians. Come see us and experience our 
+              our team of specialist that came help you minimize your recovery time and maximize your playing time.</p>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="./img/img4.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Physical Therapy.</h5>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="./img/img9.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Chiropractic Care.</h5>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <img src="./img/img8.jpg" class="d-block w-100" alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Deep Tissue Massage.</h5>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </a>
+    </div>
+
+ <!-- Marketing messaging and featurettes
+      ================================================== -->
+      <!-- Wrap the rest of the page in another container to center all the content. -->
+
+      <div class="container marketing">
+
+        <!-- Three columns of text below the carousel -->
+     
+
+
+        <!-- START THE FEATURETTES -->
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Physical Therapy. <span class="text-muted">Top Teir Expertise.</span></h2>
+            <p class="lead">Dr. Joy is a ex physcial therapist for the Dallas Cowboys and bring her knowledge from the NFL to help you recover 
+              from the most subborn of injuries. </p>
+          </div>
+          <div class="col-md-5">
+            <img class="featurette-image img-fluid mx-auto" src="./img/img6.jpg" alt="Generic placeholder image">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7 order-md-2">
+            <h2 class="featurette-heading">Chiropractic Care. <span class="text-muted">The Perfect Alignment.</span></h2>
+            <p class="lead">Dr. Rich. has been practices chiropractic care for 20 years. He is well versed in all type of ajustments and specializes 
+              in hip and neck ajustments.  </p>
+          </div>
+          <div class="col-md-5 order-md-1">
+            <img class="featurette-image img-fluid mx-auto" src="./img/img2.jpg" alt="Generic placeholder image">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <div class="row featurette">
+          <div class="col-md-7">
+            <h2 class="featurette-heading">Deep Tissue Massage. <span class="text-muted">Release the Deepest of Pressures.</span></h2>
+            <p class="lead">Dr Will. with bring a mixture of westen and east asian techniques (like suction cups) to help you relieve your muscle pain  </p>
+          </div>
+          <div class="col-md-5">
+            <img class="featurette-image img-fluid mx-auto" src="./img/img8.jpg" alt="Generic placeholder image">
+          </div>
+        </div>
+
+        <hr class="featurette-divider">
+
+        <!-- /END THE FEATURETTES -->
+        <div class="row">
+          <div class="col-lg-4">
+            <img class="rounded-circle" src="./img/img6.jpg" alt="Generic placeholder image" width="140" height="140">
+            <h2>Dr Rich.</h2>
+            <p>Chiropractic is a pseudoscientific
+              complementary and alternative medicine  that is concerned
+               with the diagnosis and treatment of mechanical disorders of the musculoskeletal system, 
+               especially the spine. Chiropractors, especially those in the field's early history, 
+               have proposed that such disorders affect general health via the nervous system.</p>
+            <p><a class="btn btn-secondary" href="#" role="button">View Profile &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <img class="rounded-circle" src="./img/img5.jpg" alt="Generic placeholder image" width="140" height="140">
+            <h2>Dr Joy.</h2>
+            <p>Sports medicine is a branch of medicine that deals with physical fitness and the treatment and 
+              prevention of injuries related to sports and exercise. Although most sports teams have employed 
+              team physicians for many years, it is only since the late 20th century that sports medicine has 
+              emerged as a distinct field of health care.</p>
+            <p><a class="btn btn-secondary" href="#" role="button">View Profile &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
+          <div class="col-lg-4">
+            <img class="rounded-circle" src="./img/img4.jpg" alt="Generic placeholder image" width="140" height="140">
+            <h2>Dr Hill.</h2>
+            <p>Massage is the manipulation of the body's soft tissues. Massage techniques are commonly 
+              applied with hands, fingers, elbows, knees, forearms, feet, or a device. 
+              The purpose of massage is generally for the treatment of body stress or pain. 
+              A person professionally trained to give massages is traditionally known as a masseur (male) 
+              or a masseuse (female). </p>
+            <p><a class="btn btn-secondary" href="#" role="button">View Profile &raquo;</a></p>
+          </div><!-- /.col-lg-4 -->
+        </div><!-- /.row -->
+      </div><!-- /.container -->
+      <hr class="featurette-divider">
+
+        //===============================appointment=============================================================
+
+<div class="container">
+      <div class="row">
+        <div class="col-md-12 pt-2">
+          <div class="card" style="width: 50rem;">
+            <div class="alert alert-secondary" role="alert">
+              >>>Physical therapy session with -Dr. Joy.
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="/appointment/booking" class="btn btn-primary">Book A Time.</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 pt-2">
+          <div class="card" style="width: 50rem;">
+            <div class="alert alert-secondary" role="alert">
+              >>>Chiropractic care session  with -Dr. Rich.
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="/appointment/booking" class="btn btn-primary">Book A Time.</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 pt-2">
+          <div class="card" style="width: 50rem;">
+            <div class="alert alert-secondary" role="alert">
+              >>>Deep tissue massage with -Dr. Will.
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="/appointment/booking" class="btn btn-primary">Book A Time.</a>
+            </div>
+          </div>
+        </div>
+        
+
+      </div>
+    </div>
+
+        //================================Pricing================================================================
+
+div class="container pricing-box">
+        <div class="card-deck mb-3 text-center">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">Chiropractic Care</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">$40<small class="text-muted">/session</small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>session time 30 mins.</li>
+                <li>Full Adjustment.</li>
+                
+              </ul>
+              <a href="/appointment/booking" class="btn btn-lg btn-block btn-outline-primary">Book Appointment</a>
+            </div>
+          </div>
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">Deep Tissue Massage</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">$30 <small class="text-muted">/session</small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>session time 30 mins.</li>
+                <li>Full Body.</li>
+                <li>East asian cupping and knife techniques avalible.</li>
+              </ul>
+              <a href="/appointment/booking" class="btn btn-lg btn-block btn-outline-primary">Book Appointment</a>
+            </div>
+          </div>
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+              <h4 class="my-0 font-weight-normal">Physical Therapy</h4>
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title">$45<small class="text-muted">/session</small></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                <li>session time 45 mins.</li>
+                <li>Will work with insurance.</li>
+                <li>Must boke a day in advance </li>
+              </ul>
+              <a href="/appointment/booking" class="btn btn-lg btn-block btn-outline-primary">Book Appointment</a>
+            </div>
+          </div>
+        </div>
+    </div>
+
+        //=============================contact====================================================================
+
+<div class="container">
+      <div class="row d-flex">
+        <div class="col-md-12 d-flex justify-content-center pt-4 ">
+          <div class="card contact-card" style="width: 25rem;">
+            <i class="fa fa-envelope-square  fa-3x p-3"><h4>Send A Message</h4></i>
+            <div class="card-body">
+              <p class="card-text">Send a Message to one of our Doctors and they will get back to you
+                as soon as possible.
+              </p>
+              <a href="/contact/message" class="btn btn-primary btn-chat">Send a message.</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 d-flex justify-content-center  pt-4 ">
+          <div class="card  contact-card" style="width: 25rem;">
+            <i class="fa fa-comments  fa-3x p-3"><h4>Chat Live With a Doctor.</h4></i>
+            <div class="card-body">
+              <p class="card-text">Have a quick question? Chat live with a doctor to get a quick answer.</p>
+              <a href="/contact/chat" class="btn btn-primary btn-chat">Go to Chat.</a>
+            </div>
+          </div>
+        </div>
+  
+
+      </div>
+    </div>
+
+        //====================messages==================================================================================
+
+
+
+<div class="container mt-5" style="margin-top:200px !important;">
+      <h1>Contact a Doctor</h1>
+      <form  action="" method="post">
+        <div class="form-group">
+          <label >Email address</label>
+          <input type="email" name="email"  id="email" class="form-control" >
+        </div>
+        <div class="form-group pb-3">
+          <label >Title</label>
+          <input type="text"name="title"  id="title" class="form-control">
+        </div>
+        <div class="form-group pb-3">
+          <label >From</label>
+          <input type="text"name="client" id="client" class="form-control">
+        </div>
+        <div class="form-group pb-3">
+          <label >Doctor</label>
+          <select name="doctor" id="doctor" class="form-control">
+           
+
+            <?php foreach($params as $item): ?>
+              <option value="<?php echo $item['lastname']; ?>"><?php echo $item['lastname']; ?></option>   
+            <?php endforeach; ?>
+
+
+         </select>
+        </div>
+
+        <div class="form-floating  pb-3 message-form">
+          <textarea class="form-control" placeholder="Leave a Message" name="message" id="message"></textarea>
+          <label for="floatingTextarea">Messages</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+
+
+        //=========================jsbackup==========================================================
+        
+        
+//calender=============================================================
+/*const calenderMaster = ()=>
+{
+    const calender = document.querySelector('#app-calender');
+    var dates = [];
+    var currentYear;
+    var currentMonth;
+    var currentMonthNumber;
+    var maxDays;
+
+    const isWeekend =day =>
+    {
+        return ((day % 7 === 0) || (day % 7 === 6));
+
+    }
+
+    const calenderSetup=()=>
+    {
+
+        var month = document.getElementById("app-calender-title");
+        var date = new Date();
+        currentYear = date.getFullYear(); 
+        currentMonth = date.toLocaleString('default', { month: 'long' });
+        currentMonthNumber = date.getMonth();
+        maxDays= getDaysInMonth(currentMonthNumber,currentYear);
+        var Title =currentMonth+" "+currentYear;
+
+        document.getElementById("app-calender-title").innerHTML=Title;
+
+        for(let day = 1; day < maxDays+1; day++)
+        {
+
+            let holidays="";
+            const weekend = isWeekend(day);
+
+            let name ="";
+        // if(day <= 7)
+            {
+                const date =  new Date(2020,0,day);
+
+                const options = { weekday : "short"};
+                
+                const dayName = new Intl.DateTimeFormat('en-Us',options).format(date);
+                name= `<div class="name">${dayName}</div>`
+            }
+
+            calender.insertAdjacentHTML(`beforeend`,
+            `<div id="${day}"  class="day ${weekend ? "weekend": ""}">${name}<div ="d-inline">${day}</div><div  id="day_${day}"></div></div>`
+            );
+        }
+
+        document.querySelectorAll("#app-calender .day").forEach
+        (
+            day=>{
+                day.addEventListener("click",event=>{
+                    //event.currentTarget.classList.toggle("selected");
+                    var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
+
+
+
+                    
+                    $.ajax({
+                        url: "/appointment/booking/getAppointmentTimes",
+                        type: "POST",
+                        //data:{doctor:doctor,client:client,time:d,duration:duration,msg:msg},
+                        dataType: "json",
+                        traditional: true,
+                        //contentType: "application/json; charset=utf-8",
+                        success: function (data) 
+                        {
+                            console.log("success");
+                        }
+                    }).done(function (data) {
+                        console.log(data);
+                        var time = document.getElementById('time');
+                        var date = document.getElementById('date');
+                        var op ="";
+                        timeOptionsDivs=[];
+                        timeOptions=[];
+                        for(var i = 12; i < 18; i++)
+                        {
+                            op+='<option value="'+i+':00">'+i+':00</option>';
+                            timeOptionsDivs.push(op);
+                            timeOptions.push(i);
+                            op="";
+                            
+                        }
+                        var x = day.childNodes;                        
+                        var z =(x[1]).innerHTML;
+                        data.result.forEach(element=>{
+                            d = new Date(element.time);
+                        
+                            var y = d.getDate();
+                            var a = y.toString();
+                            
+                            if(z==a)
+                            {
+                            timeOptions.filter(time=>time==d.getHours());
+                            }
+
+                        });
+
+                        time.innerHTML="";
+                        timeOptionsDivs.forEach(t=>{
+                            time.innerHTML+=t;
+                        });
+                        
+
+                        date.innerHTML=currentYear+'/'+(currentMonthNumber+1)+'/'+z;
+
+                    });
+
+
+
+                    myModal.show();
+                });
+        });
+    }
+
+
+
+    const getHolidayData = async(month) =>
+    {
+
+        var holidays =await fetch('https://holidayapi.com/v1/holidays?pretty&key=cd994f74-b066-45d8-ba64-bee622625aef&country=US&year=2020&month='+month+'')
+        .then(response => response.json())
+
+
+        return holidays.holidays;
+
+    }
+    var getDaysInMonth = function(month,year) {
+        // Here January is 1 based
+        //Day 0 is the last day in the previous month
+    return new Date(year, month, 0).getDate();
+    // Here January is 0 based
+    // return new Date(year, month+1, 0).getDate();
+    };
+
+
+    const loadHolidays = async () =>
+    {
+        var currentYear = new Date();
+        currentYear = currentYear.getFullYear();  
+
+        for(let mon = 1; mon < 13; mon++)
+        {
+            var x =await getHolidayData(mon);
+            var month =
+            {
+                'days':getDaysInMonth(mon, currentYear),
+                'holidays': x
+            }
+
+            dates.push(month);
+        }
+
+        return true;
+    }
+
+
+
+    const switchMonths = (select) =>
+    {
+    var date = new Date();
+    realCurrentYear = date.getFullYear();
+        if(select==0)
+        {
+            if((currentMonthNumber-1) < 0)
+            {
+                var date = new Date();
+                realCurrentYear = date.getFullYear();
+                
+                if( (currentYear-1) < realCurrentYear )
+                {
+                    console.log("current Year cant be changed");      
+                }
+                else
+                {
+                    currentMonthNumber=11;
+                    currentYear--;
+                }
+            }
+            else
+            {
+                currentMonthNumber--;
+            }
+        }
+        else if(select==1)
+        {
+            if( (currentMonthNumber+1) > 11 )
+            {
+                currentYear++;
+                currentMonthNumber=0;
+            }
+            else
+            {
+                currentMonthNumber++;
+            }
+        }
+
+        var mon = new Date(currentYear,currentMonthNumber);
+        currentMonth = mon.toLocaleString('default', { month: 'long' });
+
+        var Title =currentMonth+" "+currentYear;
+        document.getElementById("app-calender-title").innerHTML=Title;
+
+    
+        getMonthHolidays();
+    
+
+    }
+
+
+    const getMonthHolidays = () =>
+    {
+        var str2int=dates[currentMonthNumber].holidays;
+
+
+        maxDays= getDaysInMonth(currentMonthNumber,currentYear);
+
+        for(let day = 1; day < maxDays+1; day++)
+        {
+            document.getElementById('day_'+day+'').innerHTML="";
+
+
+        }
+
+        str2int.forEach(holiday => {
+
+            var x = holiday.observed.split("-");
+            var y=parseInt(x[2]);
+            var z="";
+            z+=holiday.name;
+            document.getElementById('day_'+y+'').innerHTML=z;
+            });
+    }
+
+
+    const  setup =async()=>
+    {
+        let spinner ="";
+
+        spinner +='<div id="spin">'+
+                        '<div class="spinner">'+
+                            '<div class="rect1"></div>'+
+                            '<div class="rect2"></div>'+
+                            '<div class="rect3"></div>'+
+                            '<div class="rect4"></div>'+
+                            '<div class="rect5"></div>'+
+                        '</div>'+
+                    '</div>';
+
+        document.getElementById('app-calender').innerHTML=spinner;
+        await loadHolidays();
+        document.getElementById('app-calender').innerHTML="";
+        calenderSetup();
+        getMonthHolidays();
+
+    }
+
+    const addAppointment=()=>
+    {    
+        
+        var doctor=document.getElementById('doctor').innerHTML;
+        var time=document.getElementById('time').value;
+        var duration=document.getElementById('duration').value;
+        var msg=document.getElementById('msg').value;
+        var client=document.getElementById('client').value;
+        var date=document.getElementById('date').innerHTML;
+        var x = date.split("/");
+        var y = time.split(":");
+
+        var a,b;
+        if(( currentMonthNumber+1 ) < 10 )
+        {
+            var c =currentMonthNumber+1;
+            a = c.toString();
+            b = '0'+a;
+            
+        }
+
+        var d =currentYear+'-'+b+'-'+x[2]+' '+y[0]+':'+y[1]+':00';
+
+        if((client=="")||(time==0)||(duration==0))
+        {
+            console.log("fill fields!");
+        var x= document.getElementById('fields');
+        x.style.display="block";
+        return;
+        } 
+
+
+
+        
+                    
+                $.ajax({
+                    url: "/appointment/booking/addAppointment",
+                    type: "POST",
+                    data:{doctor:doctor,client:client,time:d,duration:duration,msg:msg},
+                    dataType: "json",
+                    traditional: true,
+                    //contentType: "application/json; charset=utf-8",
+                    success: function (data) 
+                    {
+                    // console.log(data);
+                    }
+                }).done(function (data) {
+                    console.log(data);
+                    $(".modal-backdrop").remove();
+                    $('#staticBackdrop').hide(); 
+                    $('.toast').toast('show');
+
+
+                });
+    }
+
+
+
+
+    setup();
+}
+
+  //chat====================================================================
+const chatMaster =()=>
+{
+        var windowLoc = $(location).attr('pathname');
+      
+        var conn = new WebSocket('ws://localhost:8085');
+
+        conn.onopen = function(e) {
+        console.log("Connection established!");
+        loadChatData();
+        };
+        $( document ).ready(function() { 
+        // var name = e.currentTarget.querySelectorAll('.toUser')[0].innerHTML;
+        // loadChatData();
+        });
+
+        
+
+        var setTarget='';
+
+
+        const getChat=async(element)=>
+        {
+        var chat = document.getElementsByClassName('chat_list');   
+        var name = element.querySelectorAll('.toUser')[0].innerHTML;
+        setTarget = name;
+
+        for( i = 0; i < chat.length; i++)
+        {
+            chat[i].classList.remove("active_chat");
+        }
+
+        element.classList.add("active_chat");
+
+        var chatData= await  getChatDataPHP();
+        var id = chatData.pop();
+        var senders = chatData.pop();
+
+        senders=senders[0];
+        var messages = chatData;
+
+        var target=setTarget.split(" ");
+        var x; 
+        senders.forEach((item,i)=>{  
+            if(item.firstname==target[0])
+            {
+                    x=item;
+                    return;
+            }
+        }); 
+
+
+        messages = messages.filter( item=> (x.id ==item.toUserId) || (x.id==item.fromUserId));
+        msgs="";
+        messages.forEach(msg=>{
+            
+            if(msg.toUserId!=x.id)
+            {
+            msgs+=
+            '<div class="incoming_msg">'+
+            '<div class="incoming_msg_img"> <img src="/img/img11.jpg" alt="sunil"> </div>'+
+            '<div class="received_msg">'+
+                '<div class="received_withd_msg">'+
+                '<p>'+msg.msg+'</p>'+
+                '<span class="time_date"> 11:01 AM    |    June 9</span></div>'+
+            '</div>'+
+            '</div>';
+            }
+            else
+            {
+                msgs+=
+                '<div class="outgoing_msg">'+
+                    '<div class="sent_msg">'+
+                    '<p>'+msg.msg+'</p>'+
+                    '<span class="time_date"> 11:01 AM    |    June 9</span> </div>'+
+                '</div>';
+            }
+        });
+        document.getElementById('msg_history').innerHTML="";
+        document.getElementById('msg_history').innerHTML+=msgs;
+
+        }
+
+
+
+        const loadChatData =async() =>
+        {
+            var chatData= await  getChatDataPHP();
+            var id = chatData.pop();
+            conn.send(JSON.stringify({command: "setup", session: id}));
+            var senders = chatData.pop();
+                senders=senders[0];
+            var messages = chatData;
+            chat_messages="";
+
+
+
+                senders.forEach((sender) =>{
+                
+                    last =0;
+                    index=0;
+                    messages.forEach(last_message=>{
+
+                        if(last_message['toUserId'] ==sender['id'])
+                        {
+                        last= index; 
+                        }
+                        index++;
+                    });
+
+                    chat_messages+=
+                    '<div class="chat_list" id="'+messages[last].toUserId+'"  onclick=getChat(this)>'+
+                    '<div class="chat_people">'+
+                    '<div class="chat_img"> <img src="/img/img11.jpg" alt="sunil"> </div>'+
+                    '<div class="chat_ib">'+
+                        '<h5 class="toUser">'+sender['firstname'] +' '+ sender['lastname'] +'</h5>'+
+                        '<span class="chat_date">'+messages[last].created_on+'</span>'+
+                        '<p>'+messages[last].msg+'</p>'+
+                    '</div>'+
+                    '</div>'+
+                '</div>';
+
+                });
+
+            document.getElementById('inbox_chat').innerHTML+=chat_messages;
+
+
+
+        } 
+
+        const getChatDataPHP =async() =>
+        {
+        return  $.ajax({
+            url: "/contact/getChats",
+            type: "POST",
+            //data:{'name': name},
+            dataType: "json",
+            traditional: true,
+            //contentType: "application/json; charset=utf-8",
+            success: function (data) 
+            {
+
+            }
+        }).done(function (data) {
+            
+        });
+
+
+        } 
+
+
+
+
+        conn.onmessage = function(e) {
+        console.log(e.data);
+        var chat = document.getElementsByClassName('active_chat');
+        if (chat.length > 0) 
+        {
+            chatbox="";
+            chatbox+=
+            '<div class="incoming_msg">'+
+            '<div class="incoming_msg_img"> <img src="/img/img11.jpg" alt="sunil"> </div>'+
+                '<div class="received_msg">'+
+                    '<div class="received_withd_msg">'+
+                        '<p>' + e.data + '</p>'+
+                        '<span class="time_date"> 11:01 AM    |    June 9</span> </div>'+
+                        '</div>'+
+                '</div>'+
+            '</div>';
+                            
+                            
+        document.getElementById("msg_history").innerHTML += chatbox;
+        }
+        };
+
+
+        const sendMessage=(msg,target)=>
+        {
+
+        if(setTarget!=null)
+        {       
+                
+                    $.ajax({
+                    url: "/contact/sendChatMessage",
+                    type: "POST",
+                    //data:"msg="+msg+"&target="+setTarget,
+                    data:{msg:msg,targetId:target},
+                    dataType: "json",
+                    traditional: true,
+                    //contentType: "application/json; charset=utf-8",
+                    success: function (data) 
+                    {
+
+                    }
+                }).done(function (data) {
+                    console.log("sending message...");
+                    if(data.status)
+                        conn.send(JSON.stringify({command: "message",target:target, message: msg}));
+                    else
+                        console.log("message error");
+                });
+        }
+        else
+        console.log("Target not set");  
+            
+        }
+
+
+
+        const  chatSubmit=()=>
+        {
+        var chat = document.getElementsByClassName('active_chat');
+        if (chat.length > 0) 
+        {
+            var msg = document.getElementById("chat_text").value;
+            document.getElementById("chat_text").value= "";
+            chatbox="";
+            sendMessage(msg,chat[0].id);
+            chatbox+=
+            '<div class="outgoing_msg">'+
+            '<div class="sent_msg">'+
+                '<p>'+msg+'</p>'+
+                '<span class="time_date"> 11:01 AM    |    June 9</span></div>'+
+            '</div>'+
+        '</div>';        
+
+        document.getElementById("msg_history").innerHTML += chatbox;
+        }
+        else
+        {
+        console.log("no chat selected");
+        }
+
+    }
+}
+*/
+        //============================================================================================

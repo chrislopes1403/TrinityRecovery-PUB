@@ -1,0 +1,25 @@
+{
+    "name": "user/php-mvc",
+    "authors": [
+        {
+            "name": "Chris",
+            "email": "chrislopes1403@comcast.net"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\":"./"
+        }
+
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.2",
+        "cboden/ratchet": "^0.4.3"
+    },
+    "scripts": {
+        "test": [
+            "/chatServer.php"
+        ]
+       
+    }
+}
