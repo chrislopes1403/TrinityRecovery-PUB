@@ -3,7 +3,7 @@
 
 namespace app\core;
 
-class DataBase
+class Database
 {
   public \PDO $pdo;
 
