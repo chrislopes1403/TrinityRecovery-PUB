@@ -6,6 +6,7 @@ namespace app\core;
 //fix this
 use app\core\BaseController;
 use app\models\DBModel;
+use app\models\RegisterModel;
 
 class Application
 {
