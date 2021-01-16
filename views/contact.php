@@ -1,5 +1,5 @@
 
-  <section id="why-us" class="why-us" style="margin:auto;  margin-top: 60px!important;">
+  <section id="why-us" class="why-us" style="margin-top:50px; margin-left:350px;">
     <div class="container">
 
       <div class="row">
