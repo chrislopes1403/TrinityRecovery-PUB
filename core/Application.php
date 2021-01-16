@@ -56,7 +56,7 @@ public ?BaseController $basecontroller=null;
              echo $this->router->resolve();
         }catch(\Exception $e)
         {
-            $this->response->setStatusCode($e->getCode());
+            $this->response->setStatusCode( intval( $e->getCode() ) );
             echo $this->router->renderview('_error',[
                 'exception'=> $e
             ]);
