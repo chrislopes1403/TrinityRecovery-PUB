@@ -1,0 +1,2 @@
+php chatServer/server.php &
+exec "$@"
