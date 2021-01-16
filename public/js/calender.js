@@ -67,13 +67,11 @@
                         success: function (data) 
                         {
                             console.log("success");
-                            console.log(data);
                         }
                     }).fail(function(xhr, status, error) {
                          console.log(xhr,status,error);
                     }).done(function (data) {
 
-                        console.log(data);
                         var time = document.getElementById('time');
                         var date = document.getElementById('date');
                         var op ="";

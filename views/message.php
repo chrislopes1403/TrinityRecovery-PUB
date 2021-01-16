@@ -21,10 +21,11 @@
 
          <div class="col-md-4 form-group">
             <select name="doctor" id="doctor" class="form-select">
-              <option value="">Select Doctor</option>
-              <option value="Doctor 1">Doctor 1</option>
-              <option value="Doctor 2">Doctor 2</option>
-              <option value="Doctor 3">Doctor 3</option>
+            <?php foreach($params as $item): ?>
+              <option value="<?php echo $item['lastname']; ?>"><?php echo $item['lastname']; ?></option>
+             
+            <?php endforeach; ?>
+
             </select>
             <div class="validate"></div>
           </div>
