@@ -15,7 +15,7 @@
             <div class="validate"></div>
           </div>
           <div class="col-md-4 form-group mt-3 mt-md-0">
-            <input type="email" class="form-control" name="title" id="title" placeholder="Message Title" data-rule="email" data-msg="Please enter a Title">
+            <input type="text" class="form-control" name="title" id="title" placeholder="Message Title" data-rule="email" data-msg="Please enter a Title">
             <div class="validate"></div>
           </div>
           <div class="col-md-4 form-group mt-3 mt-md-0">
