@@ -74,6 +74,7 @@ class MainController extends BaseController
 
     public function getAppointmentTimes(Request $request, Response $response)
     {
+        echo "calling....";
         if($request->isPost())
         {
             $AppointmentModel = new AppointmentModel();
