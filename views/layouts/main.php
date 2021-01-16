@@ -71,7 +71,28 @@ use app\core\Application;
 
           </ul>
         </nav><!-- .nav-menu -->
+
+
+        <?php else:?>
+
+
+          <nav class="nav-menu d-none d-lg-block">
+          <ul>
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="/appointment">Appointments</a></li>
+            <li><a href="/pricing">Pricing</a></li>
+            <li><a href="/contact">Contact a Doctor</a></li>
+
+          </ul>
+        </nav><!-- .nav-menu -->
+
     <?php endif;?>
+
+
+
+
+
+
 
 
     <?php if (Application::IsGuest()): ?>
