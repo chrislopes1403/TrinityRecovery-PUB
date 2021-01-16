@@ -14,7 +14,8 @@
     },
     "require": {
         "vlucas/phpdotenv": "^5.2",
-        "cboden/ratchet": "^0.4.3"
+        "cboden/ratchet": "^0.4.3",
+        "php": "^7.4.12"
     },
     "scripts": {
         "test": [
