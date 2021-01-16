@@ -67,13 +67,11 @@
                         success: function (data) 
                         {
                             console.log("success");
-                            data = jQuery.parseJSON(JSON.stringify(data));
                             console.log(data);
                         }
                     }).fail(function(xhr, status, error) {
                          console.log(xhr,status,error);
                     }).done(function (data) {
-                        data = jQuery.parseJSON(JSON.stringify(data));
 
                         console.log(data);
                         var time = document.getElementById('time');
