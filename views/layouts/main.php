@@ -117,7 +117,7 @@ use app\core\Application;
             <?php else:?>
 
 
-              <li ><a href="/login">Welcome <?php echo Application::$app->user->getUserName() ?>!    (Logout)</a></li>
+              <li ><a href="/logout">Welcome <?php echo Application::$app->user->getUserName() ?>!    (Logout)</a></li>
 
               
 
