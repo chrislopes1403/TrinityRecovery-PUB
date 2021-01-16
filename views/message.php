@@ -11,11 +11,11 @@
       <form action="" method="post" role="form" class="php-email-form">
         <div class="row">
           <div class="col-md-4 form-group">
-            <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+            <input type="text" name="client" class="form-control" id="client" placeholder="Your Name"  data-msg="Please enter at least 4 chars">
             <div class="validate"></div>
           </div>
           <div class="col-md-4 form-group mt-3 mt-md-0">
-            <input type="text" class="form-control" name="title" id="title" placeholder="Message Title" data-rule="email" data-msg="Please enter a Title">
+            <input type="text" class="form-control" name="title" id="title" placeholder="Message Title"  data-msg="Please enter a Title">
             <div class="validate"></div>
           </div>
           <div class="col-md-4 form-group mt-3 mt-md-0">
