@@ -15,7 +15,11 @@
             <div class="validate"></div>
           </div>
           <div class="col-md-4 form-group mt-3 mt-md-0">
-            <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
+            <input type="email" class="form-control" name="title" id="title" placeholder="Message Title" data-rule="email" data-msg="Please enter a Title">
+            <div class="validate"></div>
+          </div>
+          <div class="col-md-4 form-group mt-3 mt-md-0">
+            <input type="text" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
             <div class="validate"></div>
           </div>
 
@@ -33,7 +37,7 @@
         </div>
       
         <div class="form-group mt-3">
-          <textarea class="form-control" name="message" rows="5" placeholder="Message (Optional)"></textarea>
+          <textarea class="form-control" name="message" id="message" rows="5" placeholder="Message"></textarea>
           <div class="validate"></div>
         </div>
         <div class="mb-3">
