@@ -71,7 +71,7 @@
                             console.log(data);
                         }
                     }).fail(function(xhr, status, error) {
-                         console.log(status,error);
+                         console.log(xhr,status,error);
                     }).done(function (data) {
                         data = jQuery.parseJSON(JSON.stringify(data));
 
