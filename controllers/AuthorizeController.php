@@ -147,11 +147,10 @@ class AuthorizeController extends BaseController
     {
         $MessageModel = new MessageModel;
         $lastname=Application::$app->user->getlastName();
+        $params=[];
         $params=$MessageModel->getMessages($lastname);
-        if($params)
-            return $this->render('doctorMessage',$params);
-        else
-            return $this->render('doctorMessage');
+        return $this->render('doctorMessage',$params);
+
 
 
       

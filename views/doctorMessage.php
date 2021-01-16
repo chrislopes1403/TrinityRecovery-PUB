@@ -1,4 +1,5 @@
 <?php
+print_r($params);
 ?>
 
 <div style="margin:auto;  margin-top: 100px!important; margin-bottom: 100px!important; width:1000px; ">
