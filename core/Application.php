@@ -11,7 +11,7 @@ class Application
 {
 
 public string $layout = 'main';
-public string $userClass;
+public ?RegisterModel $userClass;
 public static string $ROOT_DIR;
 public Router $router;
 public Request $request;
@@ -25,8 +25,8 @@ public ?BaseController $basecontroller=null;
 
     public function __construct($rootpath, array $config)
     {
-        //$this->userClass=$config['userClass'];
-        $this->userClass=app\models\RegisterModel::class;
+        $this->userClass=$config['userClass'];
+        //$this->userClass=app\models\RegisterModel::class;
         self::$ROOT_DIR=$rootpath;
         self::$app=$this;
         $this->request = new Request();
