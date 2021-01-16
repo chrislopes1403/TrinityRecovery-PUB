@@ -79,7 +79,7 @@ class MainController extends BaseController
         {
             $AppointmentModel = new AppointmentModel();
             $result=$AppointmentModel->getAppointmentTimes();
-            echo json_encode(["result"=>$result]);
+            echo json_encode(["result"=>1]);
 
 
            
