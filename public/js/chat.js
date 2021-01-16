@@ -305,32 +305,12 @@ function updateCounter(e) {
   //console.log('Logging to the console.');      
 }
 
-
-/*
-    let champMatch=champNames.filter(item=>{
-        var name = item.name;
-        const regex = new RegExp(`^${searchName}`,'gi');  
-        return name.match(regex);
-    });
-
-
-
-
-search.addEventListener('input',()=>searchChampNames(search.value));
-
-
-const handleSearchBar=(champMatch)=>
-{
-    if(champMatch.length > 0 )
-    {
-        let loadcard = champMatch.map((item,i)=>{
-            return `<a id="auto-b" onClick="handleFill('${item.id}')">${item.name}</a>`
-        }).join(' ');
-
-        matchedchamps.style.display='block';
-        matchedchamps.innerHTML=loadcard;
-    }
+window.onunload = function() {
+    conn.close();
 }
+<<<<<<< HEAD
 
 
 */
+=======
+>>>>>>> a63f6f2... int
