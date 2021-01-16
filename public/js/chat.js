@@ -259,7 +259,7 @@
         var chat = document.querySelector('.active_chat');
         var chatId= chat.firstChild.id;
 
-        console.log(chat.id);
+        //console.log(chat.id);
         if (chat) 
         {
             var twofrom;
@@ -292,7 +292,7 @@
 
 const searchDoctor = ()=>
 {
-    console.log(22);
+    //console.log(22);
 }
 var search = document.getElementById('search');
 
@@ -302,7 +302,7 @@ search.addEventListener('input', searchDoctor);
 
  
 function updateCounter(e) {
-  console.log('Logging to the console.');      
+  //console.log('Logging to the console.');      
 }
 
 
