@@ -21,6 +21,7 @@
 
          <div class="col-md-4 form-group">
             <select name="doctor" id="doctor" class="form-select">
+            <option value="" disabled selected hidden>Please A Doctor</option>
             <?php foreach($params as $item): ?>
               <option value="<?php echo $item['lastname']; ?>"><?php echo $item['lastname']; ?></option>
              
