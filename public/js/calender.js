@@ -68,6 +68,8 @@
                         {
                             console.log("success");
                         }
+                    }).fail(function(xhr, status, error) {
+                         console.log(status,error)
                     }).done(function (data) {
                         console.log(data);
                         var time = document.getElementById('time');
