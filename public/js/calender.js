@@ -61,7 +61,7 @@
                         url: "/appointment/booking/getAppointmentTimes",
                         type: "POST",
                         //data:{doctor:doctor,client:client,time:d,duration:duration,msg:msg},
-                        dataType: "json",
+                        //dataType: "json",
                         traditional: true,
                         //contentType: "application/json; charset=utf-8",
                         success: function (data) 
