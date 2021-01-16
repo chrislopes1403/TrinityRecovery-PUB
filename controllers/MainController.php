@@ -74,12 +74,12 @@ class MainController extends BaseController
 
     public function getAppointmentTimes(Request $request, Response $response)
     {
-        echo "calling....";
+        //echo "calling....";
         if($request->isPost())
         {
             $AppointmentModel = new AppointmentModel();
             $result=$AppointmentModel->getAppointmentTimes();
-            echo json_encode(["result"=>1]);
+            echo json_encode(["result"=>$result]);
 
 
            
