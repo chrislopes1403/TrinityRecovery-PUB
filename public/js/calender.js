@@ -56,7 +56,7 @@
 
 
 
-                    
+                    console.log("trying... appointment");
                     $.ajax({
                         url: "/appointment/booking/getAppointmentTimes",
                         type: "POST",
