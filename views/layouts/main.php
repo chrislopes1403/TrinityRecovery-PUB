@@ -67,7 +67,7 @@ use app\core\Application;
           <ul>
             <li><a href="/doctor/appointments"> My Appointments</a></li>
             <li><a href="/contact/chat">Client Chats</a></li>
-            <li><a href="/doctor/messages">Client Messsages</a></li>
+            <li><a href="/doctor/messages">Client Messages</a></li>
 
           </ul>
         </nav><!-- .nav-menu -->
@@ -185,16 +185,7 @@ use app\core\Application;
           </ul>
         </div>
 
-        <div class="col-lg-3 col-md-6 footer-links">
-          <h4>Our Services</h4>
-          <ul>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-            <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-          </ul>
-        </div>
+      
 
         
 

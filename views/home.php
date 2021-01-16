@@ -4,7 +4,6 @@
   <div class="container" >
     <h1 style="color: white !important;">Welcome to Trinity Recovery</h1>
     <h2 style="color: white !important;">Leaders in sports medicine therapy and recovery </h2>
-    <a href="#about" class="btn-get-started scrollto" style="color: white !important;" >Get Started</a>
   </div>
 </section><!-- End Hero -->
 
@@ -118,7 +117,7 @@
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
           <div class="icon-box">
             <div class="icon"><i class="bx bx-chevrons-up"></i></div>
-            <h4><a href="">Chiropractic Care.</a></h4>
+            <h4><a href="/appointment/booking?doctor=Rich">Chiropractic Care.</a></h4>
             <p>Professional head to toe adjustments. X-rays are avalible</p>
           </div>
         </div>
@@ -126,7 +125,7 @@
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-md-0">
           <div class="icon-box">
             <div class="icon"><i class="bx bx-spa"></i></div>
-            <h4><a href="">Massage Therapy</a></h4>
+            <h4><a href="/appointment/booking?doctor=Will">Massage Therapy</a></h4>
             <p>Deep tissue and tension released. Focusing on scar tissue disintegration.</p>
           </div>
         </div>
@@ -134,7 +133,7 @@
         <div class="col-lg-4 col-md-6 d-flex align-items-stretch mt-4 mt-lg-0">
           <div class="icon-box">
             <div class="icon"><i class="bx bx-run"></i></div>
-            <h4><a href="">Physical Therapy</a></h4>
+            <h4><a href="/appointment/booking?doctor=Joy">Physical Therapy</a></h4>
             <p>Movement, stability and stregthening corrections.</p>
           </div>
         </div>
