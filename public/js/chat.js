@@ -126,7 +126,7 @@
             var id = chatData.pop();
 
 
-            ws = new WebSocket('wss://trinity-recovery.herokuapp.com:8085/'+id);
+            ws = new WebSocket('wss://trinity-recovery-chat.herokuapp.com:8085/'+id);
         
             ws.onopen = () =>
             {
