@@ -182,7 +182,7 @@
                 });          
                 */
         } 
-        /*
+        
         const getChatDataPHP =async() =>
         {
         return  $.ajax({
@@ -203,7 +203,7 @@
 
         } 
 
-
+        /*
         
 
         conn.onmessage = function(e) {
