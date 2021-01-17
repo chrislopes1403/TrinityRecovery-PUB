@@ -7,10 +7,11 @@
 
 
 
-        
+        loadChatData();
+
         $( document ).ready(function() { 
             console.log("calling...");
-            loadChatData();
+           // loadChatData();
         });
 
 
