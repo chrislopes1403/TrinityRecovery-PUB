@@ -7,8 +7,6 @@
 
 
 
-        loadChatData();
-
         $( document ).ready(function() { 
             console.log("calling...");
            // loadChatData();
@@ -328,3 +326,4 @@ window.onunload = function() {
 
 
 */
+loadChatData();
