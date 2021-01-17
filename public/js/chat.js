@@ -9,6 +9,7 @@
 
         
         $( document ).ready(function() { 
+            console.log("calling...");
             loadChatData();
         });
 
@@ -120,7 +121,8 @@
 
         const loadChatData =async() =>
         {
-            
+            console.log("load.....");
+
             var chatData= await  getChatDataPHP();
             
             var id = chatData.pop();
@@ -132,6 +134,7 @@
             {
                 console.log('Connection opened!');
             }
+            console.log("return");
             /*
             conn.send(JSON.stringify({command: "setup", session: id}));
             doctor = chatData.pop();
