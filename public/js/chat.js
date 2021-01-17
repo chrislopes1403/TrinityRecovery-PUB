@@ -1,12 +1,15 @@
-        var conn = new WebSocket('wss://trinity-recovery.herokuapp.com:8085');
+        //var conn = new WebSocket('wss://trinity-recovery.herokuapp.com:8085');
 
-        conn.onopen = function(e) {
-        console.log("Connection established!");
-        loadChatData();
-        };
+        //conn.onopen = function(e) {
+       // console.log("Connection established!");
+       // loadChatData();
+        //};
+
+
+
+        
         $( document ).ready(function() { 
-        // var name = e.currentTarget.querySelectorAll('.toUser')[0].innerHTML;
-        // loadChatData();
+            loadChatData();
         });
 
 
@@ -119,7 +122,17 @@
         {
             
             var chatData= await  getChatDataPHP();
+            
             var id = chatData.pop();
+
+
+            ws = new WebSocket('ws://localhost:8080/'+id);
+        
+            ws.onopen = () =>
+            {
+                console.log('Connection opened!');
+            }
+            /*
             conn.send(JSON.stringify({command: "setup", session: id}));
             doctor = chatData.pop();
             var chatId=0;
@@ -167,9 +180,9 @@
               
                     chatId=msg.chatId;
                 });          
-
+                */
         } 
-
+        /*
         const getChatDataPHP =async() =>
         {
         return  $.ajax({
@@ -186,12 +199,12 @@
         }).done(function (data) {
             
         });
-
+        
 
         } 
 
 
-
+        
 
         conn.onmessage = function(e) {
         //console.log(e.data);
@@ -308,9 +321,6 @@ function updateCounter(e) {
 window.onunload = function() {
     conn.close();
 }
-<<<<<<< HEAD
 
 
 */
-=======
->>>>>>> a63f6f2... int
