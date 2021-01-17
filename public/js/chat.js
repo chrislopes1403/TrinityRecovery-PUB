@@ -129,10 +129,10 @@
 
             ws = new WebSocket('wss://trinity-recovery-chat.herokuapp.com/'+id);
         
-            ws.onopen = () =>
-            {
+             await ws.onopen = () =>
+                {
                 console.log('Connection opened!');
-            }
+                }
             console.log("return");
             /*
             conn.send(JSON.stringify({command: "setup", session: id}));
