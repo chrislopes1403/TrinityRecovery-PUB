@@ -1,21 +1,14 @@
-        //var conn = new WebSocket('wss://trinity-recovery.herokuapp.com:8085');
-
-        //conn.onopen = function(e) {
-       // console.log("Connection established!");
-       // loadChatData();
-        //};
-
-
 
         $( document ).ready(function() { 
-            console.log("calling...");
-           // loadChatData();
+            loadChatData();
         });
 
 
 
         var setTarget='';
         var doctor;
+        var ws;
+        var ready=false;
 
         const getChat=async(element)=>
         {
@@ -116,26 +109,61 @@
         
         }
 
+        const connect=async(id)=> {
+            if(id!=null)
+            {
+                return new Promise(function(resolve, reject) {
+                    var ws = new WebSocket('wss://trinity-recovery-chat.herokuapp.com/'+id);
+                    ws.onopen = function() {
+                        resolve(ws);
+                    };
+                    ws.onerror = function(err) {
+                        reject(err);
+                    };
+
+                    ws.onmessage=({data}) => getMessage(data);
+
+
+                    ws.onclose = function(){
+                        console.log("refresh");
+                        setTimeout(connect, 1000);
+                    };
+                });
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
 
 
         const loadChatData =async() =>
         {
-            console.log("load.....");
 
-            var chatData= await  getChatDataPHP();
+            var chatData= await getChatDataPHP();
             
             var id = chatData.pop();
+          
+           if(id!=null)
+           {
+            console.log("trying connection..."+id);
+            ws = await connect(id);
 
+            if(ws==false)
+            {
+                console.log("connection not made");
+            }
 
-            ws = new WebSocket('wss://trinity-recovery-chat.herokuapp.com/'+id);
-        
-             await ws.onopen = () =>
-                {
-                console.log('Connection opened!');
-                }
-            console.log("return");
-            /*
-            conn.send(JSON.stringify({command: "setup", session: id}));
+           }
+           else
+           {
+               console.log("connection not made");
+           }
+
+            
+            //conn.send(JSON.stringify({command: "setup", session: id}));
             doctor = chatData.pop();
             var chatId=0;
             var messages=[];
@@ -182,7 +210,7 @@
               
                     chatId=msg.chatId;
                 });          
-                */
+                
         } 
         
         const getChatDataPHP =async() =>
@@ -205,76 +233,13 @@
 
         } 
 
-        /*
         
-
-        conn.onmessage = function(e) {
-        //console.log(e.data);
-        var chat = document.getElementsByClassName('active_chat');
-        if (chat.length > 0) 
-        {
-            chatbox="";
-            chatbox+=
-            '<div class="incoming_msg">'+
-            '<div class="incoming_msg_img"> <img src="/img/img11.jpg" alt="sunil"> </div>'+
-                '<div class="received_msg">'+
-                    '<div class="received_withd_msg">'+
-                        '<p>' + e.data + '</p>'+
-                        '<span class="time_date"> 11:01 AM    |    June 9</span> </div>'+
-                        '</div>'+
-                '</div>'+
-            '</div>';
-                            
-                            
-        document.getElementById("msg_history").innerHTML += chatbox;
-        }
-        };
-
-
-        const sendMessage=(msg,target,twofrom,sender,chatId)=>
-        {
-        
-        if(setTarget!=null)
-        {    
-           // console.log("trying...");   
-                
-                    $.ajax({
-                    url: "/contact/sendChatMessage",
-                    type: "POST",
-                    //data:"msg="+msg+"&target="+setTarget,
-                    data:{msg:msg,targetId:target,twofrom:twofrom,senderName:sender,chatId:chatId},
-                    dataType: "json",
-                    traditional: true,
-                    //contentType: "application/json; charset=utf-8",
-                    success: function (data) 
-                    {
-                       // console.log("ajax...");
-
-                    }
-                }).done(function (data) {
-                   // console.log("sending message...");
-                    if(data.status)
-                    {
-                        conn.send(JSON.stringify({command: "message",target:target, message: msg}));
-                    }
-                    else{
-                        console.log("message error");
-                    }
-                });
-        }
-        else
-        console.log("Target not set");  
-        
-        }
-
-
 
         const  chatSubmit=()=>
         {
         var chat = document.querySelector('.active_chat');
         var chatId= chat.firstChild.id;
 
-        //console.log(chat.id);
         if (chat) 
         {
             var twofrom;
@@ -305,6 +270,106 @@
 
     }
 
+
+
+    const sendMessage=(msg,target,twofrom,sender,chatId)=>
+    {
+    
+    if(setTarget!=null)
+    {    
+            
+                $.ajax({
+                url: "/contact/sendChatMessage",
+                type: "POST",
+                //data:"msg="+msg+"&target="+setTarget,
+                data:{msg:msg,targetId:target,twofrom:twofrom,senderName:sender,chatId:chatId},
+                dataType: "json",
+                traditional: true,
+                //contentType: "application/json; charset=utf-8",
+                success: function (data) 
+                {
+
+                }
+            }).done(function (data) {
+                if(data.status)
+                {
+                   wsSendMessage([target,msg]);
+                }
+                else{
+                    console.log("message error");
+                }
+            });
+    }
+    else
+    console.log("Target not set");  
+    
+    }
+
+
+
+    function wsSendMessage(msg){
+        // Wait until the state of the socket is not ready and send the message when it is...
+        waitForSocketConnection(ws, function(){
+            ws.send(JSON.stringify(msg));
+        });
+    }
+    
+    // Make the function wait until the connection is made...
+    function waitForSocketConnection(socket, callback){
+        setTimeout(
+            function () {
+                if (socket.readyState === 1) {
+                    console.log("Connection is made")
+                    if (callback != null){
+                        callback();
+                    }
+                } else {
+                    console.log("wait for connection...")
+                    waitForSocketConnection(socket, callback);
+                }
+    
+            }, 5); // wait 5 milisecond for the connection...
+    }
+
+
+
+
+
+
+
+
+
+        
+
+        const  getMessage= (msg) => {
+        var msgs= msg.split('-');
+        var chat = document.getElementById(msgs[0]);
+        if (chat) 
+        {
+
+            chatbox="";
+            chatbox+=
+            '<div class="incoming_msg">'+
+            '<div class="incoming_msg_img"> <img src="/img/img11.jpg" alt="sunil"> </div>'+
+                '<div class="received_msg">'+
+                    '<div class="received_withd_msg">'+
+                        '<p>' + msgs[1] + '</p>'+
+                        '<span class="time_date"> 11:01 AM    |    June 9</span> </div>'+
+                        '</div>'+
+                '</div>'+
+            '</div>';
+                            
+                            
+        document.getElementById("msg_history").innerHTML += chatbox;
+        }
+        };
+
+
+      
+
+
+
+
 const searchDoctor = ()=>
 {
     //console.log(22);
@@ -321,9 +386,7 @@ function updateCounter(e) {
 }
 
 window.onunload = function() {
-    conn.close();
+    ws.close();
 }
 
 
-*/
-loadChatData();
