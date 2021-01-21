@@ -63,7 +63,6 @@ class MainController extends BaseController
     {
         if($request->isPost())
         {
-        
             $AppointmentModel = new AppointmentModel();
             $result=$AppointmentModel->addAppointment($_POST['client'],$_POST['time'],
             $_POST['duration'],$_POST['doctor'],$_POST['msg']);
@@ -74,41 +73,15 @@ class MainController extends BaseController
 
     public function getAppointmentTimes(Request $request, Response $response)
     {
-        //echo "calling....";
         if($request->isPost())
         {
             $AppointmentModel = new AppointmentModel();
             $result=$AppointmentModel->getAppointmentTimes();
             $res = array('result' => $result);
-            echo json_encode($res);
-
-
-           
+            echo json_encode($res);  
         }
     }
    
-
-
-/*
-    public function contact()
-    {       
-        $params=['name' => "Chris"];
-        return $this->render('contact',$params);
-    }
-
-    
-    public function handleContact(Request $request)
-    {
-        $body=$request->getBody();
-
-        echo '<pre>';
-        var_dump($body);
-        echo '<pre>';
-        exit;
-
-        return 'handle contact data';
-    }
-    */
 }
 
 

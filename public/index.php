@@ -32,15 +32,18 @@ $app->router->post('/appointment/booking/getAppointmentTimes', [MainController::
 
 $app->router->get('/login', [AuthorizeController::class, 'login']);
 $app->router->post('/login', [AuthorizeController::class, 'login']);
+
 $app->router->get('/register', [AuthorizeController::class, 'register']);
 $app->router->post('/register', [AuthorizeController::class, 'register']);
+
 $app->router->get('/logout', [AuthorizeController::class, 'logout']);
-$app->router->get('/contact/chat', [AuthorizeController::class, 'chat']);
+
 $app->router->get('/doctor', [AuthorizeController::class, 'doctor']);
 $app->router->get('/doctor/appointments', [AuthorizeController::class, 'doctorAppointments']);
 $app->router->get('/doctor/messages', [AuthorizeController::class, 'doctorMessage']);
+$app->router->post('/doctor/messages', [AuthorizeController::class, 'doctorMessage']);
 
-
+$app->router->get('/contact/chat', [AuthorizeController::class, 'chat']);
 $app->router->post('/contact/getChats', [AuthorizeController::class, 'getChats']);
 $app->router->post('/contact/sendChatMessage', [AuthorizeController::class, 'sendChatMessage']);
 

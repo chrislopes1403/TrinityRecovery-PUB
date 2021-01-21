@@ -51,11 +51,6 @@ $this->response=$response;
 
        if(is_array($callback))
        {
-           /*
-           Application::$app->basecontroller = new $callback[0]();
-           Application::$app->action = new $callback[1]();
-           $callback[0] =  Application::$app->basecontroller;
-           */
           $basecontroller= new $callback[0]();
           Application::$app->basecontroller=$basecontroller;
           $basecontroller->action=$callback[1];
@@ -63,8 +58,6 @@ $this->response=$response;
 
           foreach($basecontroller->getMiddlewares() as $middleware)
           {
-           // echo "post";
-
             $middleware->execute();
           }
 
@@ -83,7 +76,6 @@ $this->response=$response;
         $layoutContent = $this->layoutContent();
         $viewContent=$this->rendorOnlyView($view,$params);
        return str_replace('{{Content}}',$viewContent,$layoutContent);
-        //include_once Application::$ROOT_DIR."./../views/$view.php";
     
     
     }

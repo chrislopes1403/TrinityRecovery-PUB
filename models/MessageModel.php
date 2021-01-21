@@ -63,7 +63,8 @@ public  function getMessages($doctor)
             }
             else
             {
-                return false;
+                $result=[];
+                return $result;
             }      
         } 
         catch (Exception $e) 
@@ -73,7 +74,29 @@ public  function getMessages($doctor)
         }
 }
 
-
+public  function deleteMessages($title,$client)
+{
+    $stmt =self::prepare("DELETE  FROM messages WHERE title = :title AND client = :client");
+    $stmt->bindParam(':client', $client);
+    $stmt->bindParam(':title', $title);
+  
+        try{
+           
+            if( $stmt->execute())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }      
+        } 
+        catch (Exception $e) 
+        {
+            echo $e->getMessage();
+            echo("<script>console.log('PHP:".$e->getMessage()."');</script>");
+        }
+}
 
 
 }

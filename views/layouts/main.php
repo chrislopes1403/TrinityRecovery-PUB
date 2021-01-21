@@ -130,18 +130,21 @@ use app\core\Application;
 </header><!-- End Header -->
 
 
-
 <!--Toast messages-->
 <?php if(Application::$app->session->getFlash('success')):?>
+  <?php
+   echo '<script>console.log("Your stuff here")</script>';
+?>
 
-<div class="toast" style="position: absolute; top: 0; right: 0; z-index:5000;"  role="alert" aria-live="assertive" aria-atomic="true">
+
+<div class="toast" role="alert"  aria-live="assertive" autohide: false aria-atomic="true" style="position: absolute; top: 0; right: 0; z-index:5000;" data-bs-delay="2000">
   <div class="toast-header">
-    <strong class="mr-auto">Thank You!</strong>
-    <small>1 min ago</small>
-  
+    <strong class="me-auto">Thank You!</strong>
+    <small class="text-muted">1 min ago</small>
+    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
   </div>
   <div class="toast-body">
-  <?php echo Application::$app->session->getFlash('success')?>
+  <?php echo Application::$app->session->getFlash('success')?>  
   </div>
 </div>
 
@@ -225,8 +228,6 @@ use app\core\Application;
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="/js/main.js"></script>
-    <script>
-      //starts the carousel
-    </script>
+    
   </body>
 </html>

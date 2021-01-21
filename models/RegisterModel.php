@@ -116,9 +116,7 @@ public function validate()
             }
         }
     }
-    //print_r($this->errors);
     return empty($this->errors);
-  // return true;
 
 }
 
@@ -194,7 +192,7 @@ public function getUserName() : string
 
 }
 
-public function getFristname() : string
+public function getFirstname() : string
 {
 
     return $this->firstname;

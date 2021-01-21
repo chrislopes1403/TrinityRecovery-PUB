@@ -2,13 +2,9 @@
 use app\core\Application;
 ?>
 
-<div class="card" id="search-body">
-  <div class="card-body">
-    This is some text within a card body.
-  </div>
-</div>
 
-<div class="mt-5">
+
+<div class="" style="margin-top:80px; !important">
   <div class="messaging">
     <div class="inbox_msg">
 
@@ -20,8 +16,25 @@ use app\core\Application;
           <?php else:?>
             <h4 id="chat_header">Doctors</h4>
           <?php endif;?>
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" id="search">
+          <form class="form-inline my-1">
+          <input id="search-list" name="search-list" class="form-control mr-sm-2" type="text" list="Users"  placeholder="Search"  autocomplete="off"/>
+            <datalist id="Users" >
 
+
+            <?php foreach($params as $item): ?>
+                    <option onclick="searchUsers()"  value="<?php echo $item['firstname']; ?>-<?php echo $item['lastname']; ?>" >
+
+                    <?php if(!Application::$app->user->FindDoctor()):?>Dr.<?php endif;?>
+                    <?php echo $item['firstname']; ?> <?php echo $item['lastname']; ?>
+
+                    </option>
+
+              <?php endforeach; ?>
+
+
+          </datalist>
+      
+          </form>
             <!--
             <div class="chat_list active_chat"  onclick=getChat(this)>
               <div class="chat_people">

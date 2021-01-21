@@ -17,12 +17,20 @@ switch(windowLoc){
     loadScript('../js/chat.js').catch((error) => {
         console.error(error);
       });
+    
     break;
 
+
   case "/appointment/booking":
-    console.log(1);
-    loadScript('../js/calender.js');
-  
+    loadScript('../js/calender.js').catch((error) => {
+      console.error(error);
+    });
+    break;
+
+    case "/doctor/messages":
+      loadScript('../js/message.js').catch((error) => {
+        console.error(error);
+      });
     break;
 }
 
@@ -32,5 +40,12 @@ switch(windowLoc){
 //==============doctor appointments=====================================
 $(document).ready( function () {
     $('#doctor_table').DataTable();
+
+
+    $(".toast").toast('show');
+
+
+
 } );
+
 

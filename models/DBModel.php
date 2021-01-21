@@ -79,6 +79,36 @@ use app\core\Application;
             }
             else
             {
+             return false;
+            }
+         
+        } 
+        catch (Exception $e) 
+        {
+            echo $e->getMessage();
+        }
+    }
+
+
+    public static function FindAClient($firstname)
+    {
+        $tableName='users';
+        $two = 2;
+        $zero = 0;  
+
+        $statement=self::prepare("SELECT firstname, id ,lastname FROM $tableName WHERE firstname = :firstname AND status % :value != :value2");
+        $statement->bindValue(":firstname",$firstname);
+        $statement->bindValue(":value",$two);
+        $statement->bindValue(":value2",$zero);
+        try{
+        $statement->execute();
+            $result = $statement->fetchAll();
+            if(is_array($result) && count($result)>0)
+            {
+             return  true;
+            }
+            else
+            {
                 return false;
             }
          
@@ -95,7 +125,36 @@ use app\core\Application;
         $two = 2;
         $zero = 0;  
 
-        $statement=self::prepare("SELECT lastname FROM $tableName WHERE  status % :value = :value2");
+        $statement=self::prepare("SELECT firstname, lastname FROM $tableName WHERE  status % :value = :value2");
+        $statement->bindValue(":value",$two);
+        $statement->bindValue(":value2",$zero);
+        try{
+        $statement->execute();
+            $result = $statement->fetchAll();
+            if(is_array($result) && count($result)>0)
+            {
+             return  $result;
+            }
+            else
+            {
+                return false;
+            }
+         
+        } 
+        catch (Exception $e) 
+        {
+            echo $e->getMessage();
+        }
+    }
+
+
+    public static function getClientNames()
+    {
+        $tableName='users';
+        $two = 2;
+        $zero = 0;  
+
+        $statement=self::prepare("SELECT firstname,lastname FROM $tableName WHERE  status % :value != :value2");
         $statement->bindValue(":value",$two);
         $statement->bindValue(":value2",$zero);
         try{

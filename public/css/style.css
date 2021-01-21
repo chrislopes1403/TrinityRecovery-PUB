@@ -577,8 +577,8 @@ img {
 #search-body
 {
   position: absolute !important;
-  top:170px;
+  top:205px;
   left:0px;
   display: none;
-  width: 540px !important;
+  width: 390px !important;
 }

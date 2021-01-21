@@ -1,6 +1,5 @@
 <?php
 
-// import namespace comes befor use
 namespace app\controllers;
 
 use app\core\BaseController;
@@ -20,12 +19,10 @@ class AuthorizeController extends BaseController
 
     public function __construct()
     {
-        //$this->registerMiddleware(new AuthMiddleware([])); restrict the whole controller;
         $this->registerMiddleware(new AuthMiddleware(['chat']));
         $this->registerMiddleware(new AuthMiddleware(['message']));
         $this->registerMiddleware(new AuthMiddleware(['doctor']));
         $this->registerMiddleware(new AuthMiddleware(['doctorAppointments']));
-        //$this->registerMiddleware(new AuthMiddleware());
     }
 
 
@@ -48,30 +45,28 @@ class AuthorizeController extends BaseController
             return;
             }
          }
-       // $this->setLayout('authorize');
         return $this->render('login');
         
     }
 
     public function register(Request $request)
     {
-      //  $this->setLayout('authorize');
         $registerModel = new RegisterModel();
 
-        if($request->IsPost())
-        {
-
-            $registerModel->loadViewData($request->getBody());
-
-            if($registerModel->validate() && $registerModel->register())
+            if($request->IsPost())
             {
-               Application::$app->session->setFlash('success','Thanks for registering');
-               Application::$app->response->redirect('/');
-            }
 
-           return $this->render('register',['model'=>$registerModel]);
-       
-        }
+                $registerModel->loadViewData($request->getBody());
+
+                if($registerModel->validate() && $registerModel->register())
+                {
+                Application::$app->session->setFlash('success','Thanks for registering');
+                Application::$app->response->redirect('/');
+                }
+
+            return $this->render('register',['model'=>$registerModel]);
+        
+            }
 
         return $this->render('register',['model'=>$registerModel]);
     }
@@ -85,27 +80,36 @@ class AuthorizeController extends BaseController
     
     public function chat(Request $request, Response $response)
     {        
-
-        return $this->render('chat');
+        $params=[];
+            if(Application::$app->user->FindDoctor())
+            {
+                $params= DBModel::getClientNames();
+            }
+            else
+            {
+                $params= DBModel::getDoctorNames();
+            }
+        return $this->render('chat',$params);
     }
+
+
 
     public function message(Request $request, Response $response)
     {
 
         if($request->isGet())
         {
-
-        $params= DBModel::getDoctorNames();
-        return $this->render('message',$params);
+            $params= DBModel::getDoctorNames();
+            return $this->render('message',$params);
         }
         
         if($request->isPost())
         {  
         $MessageModel = new MessageModel;
 
-            if(($_POST['email']=="") || ($_POST['title']=="") || ($_POST['client']=="") || ($_POST['doctor']=="") || ($_POST['message']==""))
+            if(($_POST['email']=="") || ($_POST['title']=="") || ($_POST['client']=="") || 
+            ($_POST['doctor']=="") || ($_POST['message']==""))
             {
-                
                 Application::$app->session->setFlash('success','Error Message not Sent!');
                 $response->redirect('/contact/message');
                 return;
@@ -145,13 +149,25 @@ class AuthorizeController extends BaseController
 
     public function doctorMessage(Request $request, Response $response)
     {
+        if($request->isGet())
+        {
         $MessageModel = new MessageModel;
         $lastname=Application::$app->user->getlastName();
         $params=[];
         $params=$MessageModel->getMessages($lastname);
         return $this->render('doctorMessage',$params);
+        }
+        else
+        {
+            if($_POST['delete'])
+            {
+                $MessageModel = new MessageModel;
+                $result = $MessageModel->deleteMessages($_POST['title'],$_POST['client']);
+                echo json_encode(['result'=>$result]);
+            }
 
 
+        }
 
       
     }
@@ -162,29 +178,36 @@ class AuthorizeController extends BaseController
 
        if($request->isPost())
         {
+
+                if(isset($_POST['firstname']))
+                {
+
+                    if(Application::$app->user->FindDoctor())
+                    {
+                        $client=$_POST['firstname'];
+                        $doctor=Application::$app->user->getFirstname();
+                        $x=1;
+                    }
+                    else
+                    {
+                        $doctor=$_POST['firstname'];
+                        $client=Application::$app->user->getFirstname();
+                        $x=0;
+                    }
+
+                $result= $ChatModel->createNewChatroom($client,$doctor);
+                
+                    $result[]=$x;
+                    echo json_encode(['user'=>$result]);
+                    return;
+                }
+
+
            $id= Application::$app->session->get('user');
            $result=$ChatModel->getChatRooms($id);
-            $result[]=$id;
-            echo json_encode($result);
-           
-            /*
-           $SenderNames=[];
-
-           foreach($result as $item)
-           {
-               if($id==$item['toUserId'])
-                    $selectId = $item['fromUserId'];
-                else
-                    $selectId = $item['toUserId'];
-
-
-               $SenderNames[]=$ChatModel->getSenderData($selectId);
-           }
-            $result[]=$SenderNames;
-            $result[]=$id;
-
-            echo json_encode($result);
-           */
+           $result[]=$id;
+           echo json_encode($result);
+          
         }
     }
     
@@ -213,8 +236,4 @@ class AuthorizeController extends BaseController
 
 
 }
-
-
-
-
 ?>

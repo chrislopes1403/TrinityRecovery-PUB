@@ -32,9 +32,7 @@ public function login()
     }
     if(!password_verify($this->password,$user->password))
     {
-       // echo $this->password;
-       // echo $user->password;
-
+   
         $this->addErrorMessage('passowrd','password is incorrect');
         return false;
     }

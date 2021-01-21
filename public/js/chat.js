@@ -1,6 +1,79 @@
 
         $( document ).ready(function() { 
             loadChatData();
+            $(document).on('change', '#search-list', async function() {
+                var select=this.value;
+                var res=select.split("-");
+                var found = users.find(element => 
+                    element.clientName == res[0] || element.doctorName == res[0] ||
+                    element.clientName == res[1] || element.doctorName == res[1] 
+                    );
+                if(!found)
+                {
+                    console.log("found");
+
+                    var rst;
+
+                   await  $.ajax({
+                        url: "/contact/getChats",
+                        type: "POST",
+                        data:{'firstname': res[0],'lastname':res[1]},
+                        dataType: "json",
+                        traditional: true,
+                        //contentType: "application/json; charset=utf-8",
+                        success: function (data) 
+                        {
+
+                        }
+                    }).done(function (data) {
+                        console.log(data);
+                            rst=data.user;
+                        
+                            chat_messages="";
+
+                            var New="New";
+                            if(rst[5]==1)
+                            {
+                            chat_messages+=
+                                    '<div class="chat_list" id="'+rst[0]+'"  onclick=getChat(this)>'+
+                                    '<div class="chat_people"  id="'+rst[2]+'">'+
+                                    '<div class="chat_img"> <img src="/img/img11.jpg" alt="sunil"> </div>'+
+                                    '<div class="chat_ib">'+
+                                        '<h5 id="doctor_'+rst[0]+'">'+rst[5]+'</h5>'+
+                                        '<span class="chat_date">'+rst[4]+'</span>'+
+                                        '<p>'+rst[3]+'</p>'+
+                                    '</div>'+
+                                    '</div>'+
+                                '</div>';
+                            }
+                            else
+                            {
+                                chat_messages+=
+                                '<div class="chat_list" id="'+rst[1]+'"  onclick=getChat(this)>'+
+                                '<div class="chat_people"  id="'+rst[2]+'">'+
+                                '<div class="chat_img"> <img src="/img/img11.jpg" alt="sunil"> </div>'+
+                                '<div class="chat_ib">'+
+                                    '<h5 id="doctor_'+rst[1]+'">'+rst[5]+'</h5>'+
+                                    '<span class="chat_date">'+rst[4]+'</span>'+
+                                    '<p>'+rst[3]+'</p>'+
+                                '</div>'+
+                                '</div>'+
+                            '</div>';
+                            }
+
+
+                                document.getElementById('inbox_chat').innerHTML+=chat_messages;
+                                chat_messages="";
+                    });
+
+                }
+                else
+                {
+                    //add error message
+                    console.log("found");
+                }
+            });
+
         });
 
 
@@ -9,7 +82,137 @@
         var doctor;
         var ws;
         var ready=false;
+        var users;
 
+
+
+
+        const loadChatData =async() =>
+        {
+
+            var chatData= await getChatDataPHP();
+            users = chatData;
+            var id = chatData.pop();
+      
+
+           if(id!=null)
+           {
+            console.log("trying connection..."+id);
+            ws = await connect(id);
+
+            if(ws==false)
+            {
+                console.log("connection not made");
+            }
+
+           }
+           else
+           {
+               console.log("connection not made");
+           }
+
+            
+            doctor = chatData.pop();
+            var chatId=0;
+            var messages=[];
+
+            chatData.sort((a, b) => a.chatId - b.chatId);
+            chat_messages="";
+            
+            chatData.forEach((msg)=>{
+
+                    if(chatId!=msg.chatId)
+                    {
+                        if(doctor)
+                        {
+                        chat_messages+=
+                            '<div class="chat_list" id="'+msg.clientId+'"  onclick=getChat(this)>'+
+                            '<div class="chat_people" id="'+msg.chatId+'">'+
+                            '<div class="chat_img"> <img src="/img/img11.jpg" alt="sunil"> </div>'+
+                            '<div class="chat_ib">'+
+                                '<h5 id="client_'+msg.clientId+'">'+msg.clientName +'</h5>'+
+                                '<span class="chat_date">'+msg.created_on+'</span>'+
+                                '<p>'+msg.msg+'</p>'+
+                            '</div>'+
+                            '</div>'+
+                        '</div>';
+                        }
+                        else
+                        {
+                            chat_messages+=
+                            '<div class="chat_list" id="'+msg.doctorId+'"  onclick=getChat(this)>'+
+                            '<div class="chat_people"  id="'+msg.chatId+'">'+
+                            '<div class="chat_img"> <img src="/img/img11.jpg" alt="sunil"> </div>'+
+                            '<div class="chat_ib">'+
+                                '<h5 id="doctor_'+msg.doctorId+'">'+msg.doctorName+'</h5>'+
+                                '<span class="chat_date">'+msg.created_on+'</span>'+
+                                '<p>'+msg.msg+'</p>'+
+                            '</div>'+
+                            '</div>'+
+                        '</div>';
+                        }
+                        document.getElementById('inbox_chat').innerHTML+=chat_messages;
+                        chat_messages="";
+                    }
+           
+              
+                    chatId=msg.chatId;
+                });
+        } 
+
+
+
+        const connect=async(id)=> {
+            if(id!=null)
+            {
+                return new Promise(function(resolve, reject) {
+                    var ws = new WebSocket('wss://trinity-recovery-chat.herokuapp.com/'+id);
+                    ws.onopen = function() {
+                        resolve(ws);
+                    };
+                    ws.onerror = function(err) {
+                        reject(err);
+                    };
+
+                    ws.onmessage=({data}) => getMessage(data);
+
+
+                    ws.onclose = function(){
+                        console.log("refresh");
+                        setTimeout(connect, 1000);
+                    };
+                });
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+
+
+        
+        const getChatDataPHP =async() =>
+        {
+        return await  $.ajax({
+            url: "/contact/getChats",
+            type: "POST",
+            //data:{'name': name},
+            dataType: "json",
+            traditional: true,
+            //contentType: "application/json; charset=utf-8",
+            success: function (data) 
+            {
+            }
+        }).done(function (data) {
+            
+
+        });
+
+        } 
+
+        
         const getChat=async(element)=>
         {
 
@@ -109,132 +312,6 @@
         
         }
 
-        const connect=async(id)=> {
-            if(id!=null)
-            {
-                return new Promise(function(resolve, reject) {
-                    var ws = new WebSocket('wss://trinity-recovery-chat.herokuapp.com/'+id);
-                    ws.onopen = function() {
-                        resolve(ws);
-                    };
-                    ws.onerror = function(err) {
-                        reject(err);
-                    };
-
-                    ws.onmessage=({data}) => getMessage(data);
-
-
-                    ws.onclose = function(){
-                        console.log("refresh");
-                        setTimeout(connect, 1000);
-                    };
-                });
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-
-
-
-        const loadChatData =async() =>
-        {
-
-            var chatData= await getChatDataPHP();
-            
-            var id = chatData.pop();
-          
-           if(id!=null)
-           {
-            console.log("trying connection..."+id);
-            ws = await connect(id);
-
-            if(ws==false)
-            {
-                console.log("connection not made");
-            }
-
-           }
-           else
-           {
-               console.log("connection not made");
-           }
-
-            
-            //conn.send(JSON.stringify({command: "setup", session: id}));
-            doctor = chatData.pop();
-            var chatId=0;
-            var messages=[];
-
-            chatData.sort((a, b) => a.chatId - b.chatId);
-            chat_messages="";
-            
-            chatData.forEach((msg)=>{
-
-                    if(chatId!=msg.chatId)
-                    {
-                        if(doctor)
-                        {
-                        chat_messages+=
-                            '<div class="chat_list" id="'+msg.clientId+'"  onclick=getChat(this)>'+
-                            '<div class="chat_people" id="'+msg.chatId+'">'+
-                            '<div class="chat_img"> <img src="/img/img11.jpg" alt="sunil"> </div>'+
-                            '<div class="chat_ib">'+
-                                '<h5 id="client_'+msg.clientId+'">'+msg.clientName +'</h5>'+
-                                '<span class="chat_date">'+msg.created_on+'</span>'+
-                                '<p>'+msg.msg+'</p>'+
-                            '</div>'+
-                            '</div>'+
-                        '</div>';
-                        }
-                        else
-                        {
-                            chat_messages+=
-                            '<div class="chat_list" id="'+msg.doctorId+'"  onclick=getChat(this)>'+
-                            '<div class="chat_people"  id="'+msg.chatId+'">'+
-                            '<div class="chat_img"> <img src="/img/img11.jpg" alt="sunil"> </div>'+
-                            '<div class="chat_ib">'+
-                                '<h5 id="doctor_'+msg.doctorId+'">'+msg.doctorName+'</h5>'+
-                                '<span class="chat_date">'+msg.created_on+'</span>'+
-                                '<p>'+msg.msg+'</p>'+
-                            '</div>'+
-                            '</div>'+
-                        '</div>';
-                        }
-                        document.getElementById('inbox_chat').innerHTML+=chat_messages;
-                        chat_messages="";
-                    }
-           
-              
-                    chatId=msg.chatId;
-                });          
-                
-        } 
-        
-        const getChatDataPHP =async() =>
-        {
-        return  $.ajax({
-            url: "/contact/getChats",
-            type: "POST",
-            //data:{'name': name},
-            dataType: "json",
-            traditional: true,
-            //contentType: "application/json; charset=utf-8",
-            success: function (data) 
-            {
-
-            }
-        }).done(function (data) {
-            
-        });
-        
-
-        } 
-
-        
-
         const  chatSubmit=()=>
         {
         var chat = document.querySelector('.active_chat');
@@ -331,15 +408,7 @@
             }, 5); // wait 5 milisecond for the connection...
     }
 
-
-
-
-
-
-
-
-
-        
+  
 
         const  getMessage= (msg) => {
         var msgs= msg.split('-');
@@ -366,25 +435,6 @@
 
 
       
-
-
-
-
-const searchDoctor = ()=>
-{
-    //console.log(22);
-}
-var search = document.getElementById('search');
-
-search.addEventListener('input', searchDoctor);
-
-
-
- 
-function updateCounter(e) {
-  //console.log('Logging to the console.');      
-}
-
 window.onunload = function() {
     ws.close();
 }
