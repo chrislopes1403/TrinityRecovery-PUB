@@ -91,6 +91,8 @@
         {
 
             var chatData= await getChatDataPHP();
+
+           
             users = chatData;
             var id = chatData.pop();
       
@@ -111,7 +113,9 @@
                console.log("connection not made");
            }
 
-            
+           var myobj = document.getElementById("loadbox");
+           myobj.remove();
+
             doctor = chatData.pop();
             var chatId=0;
             var messages=[];
