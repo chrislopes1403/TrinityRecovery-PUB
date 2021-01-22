@@ -4,3 +4,4 @@ node_modules
 chatServer
 backup.txt
 steps.txt
+.env
