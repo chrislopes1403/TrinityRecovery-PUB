@@ -122,7 +122,7 @@
     const getHolidayData = async(month) =>
     {
 
-        var holidays =await fetch('https://holidayapi.com/v1/holidays?pretty&key=cd994f74-b066-45d8-ba64-bee622625aef&country=US&year=2020&month='+month+'')
+        var holidays =await fetch('https://holidayapi.com/v1/holidays?pretty&key=<!-- key goes here -->)
         .then(response => response.json())
 
 
