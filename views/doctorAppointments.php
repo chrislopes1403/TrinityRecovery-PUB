@@ -14,7 +14,7 @@ $apts=$appointmentModel->getAppointments();
   <div class="card">
     <div class="card-body">
   
-  <table id="doctor_table" class="display pt-5 " style="width:80%; margin-top: 200 !important;  padding-top: 200  !important;">
+  <table id="doctor_table" class="display pt-5 " style="width:80%; margin-top: 200 !important;  padding-top: 200  !important; max-height:600px;">
           <thead>
               <tr>
                   <th>Doctor</th>
