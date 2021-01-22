@@ -1,6 +1,0 @@
-php -S localhost:8080
-1. composer install
-2. configure autoload in index.php
-3. get dot env $ composer require vlucas/phpdotenv
-worker: php chatServer/server.php
-
