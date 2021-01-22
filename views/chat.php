@@ -35,146 +35,56 @@ use app\core\Application;
           </datalist>
       
           </form>
-            <!--
-            <div class="chat_list active_chat"  onclick=getChat(this)>
-              <div class="chat_people">
-                <div class="chat_img"> <img src="/img/img11.jpg" alt="sunil"> </div>
-                <div class="chat_ib">
-                  <h5 class='toUser'>Sunil Rajput</h5> <span class="chat_date">Dec 25 2020 10:30pm</span>
-                  <p>Test, which is a new approach to have all solutions 
-                    astrology under one roof.</p>
+              
+            <div id="loadbox">
+            
+                <div class="chat_list">
+                  <div class="chat_people">
+                    <div class="chat_img"> <img src="/img/img11.jpg" alt="sunil"> </div>
+                    <div class="chat_ib">
+                      <div class="mt-1" style="width:300px; border-radius: 25px; height:20px; background-color:#E6E6E6;"></div> 
+                      <div class="mt-1" style="width:150px; border-radius: 25px; height:20px; background-color:#E6E6E6;"></div> 
+                      <div class="mt-1"  style="width:375px; border-radius: 25px; height:20px; background-color:#BDBBBB;"></div> 
+
+                    </div>
+                  </div>
                 </div>
-              </div>
+                
+                <div class="chat_list">
+                  <div class="chat_people">
+                    <div class="chat_img"> <img src="/img/img11.jpg" alt="sunil"> </div>
+                    <div class="chat_ib">
+                      <div class="mt-1" style="width:300px; border-radius: 25px; height:20px; background-color:#E6E6E6;"></div> 
+                      <div class="mt-1" style="width:150px; border-radius: 25px; height:20px; background-color:#E6E6E6;"></div> 
+                      <div class="mt-1"  style="width:310px; border-radius: 25px; height:20px; background-color:#BDBBBB;"></div> 
+                    </div>
+                  </div>
+                </div>
+
+                <div class="chat_list">
+                  <div class="chat_people">
+                    <div class="chat_img"> <img src="/img/img11.jpg" alt="sunil"> </div>
+                    <div class="chat_ib">
+                      <div class="mt-1" style="width:300px; border-radius: 25px; height:20px; background-color:#E6E6E6;"></div> 
+                      <div class="mt-1" style="width:150px; border-radius: 25px; height:20px; background-color:#E6E6E6;"></div> 
+                      <div class="mt-1"  style="width:290px; border-radius: 25px; height:20px; background-color:#BDBBBB;"></div> 
+
+                    </div>
+                  </div>
+                </div>
+
             </div>
 
-            <div class="chat_list"  onclick=getChat(this)>
-              <div class="chat_people">
-                <div class="chat_img"> <img src="/img/img11.jpg" alt="sunil"> </div>
-                <div class="chat_ib">
-                  <h5 class='toUser'>Chris Lopes</h5> <span class="chat_date">Dec 25</span>
-                  <p>Test, which is a new approach to have all solutions 
-                    astrology under one roof.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="chat_list"  onclick=getChat(this)>
-              <div class="chat_people">
-                <div class="chat_img"> <img src="/img/img11.jpg" alt="sunil"> </div>
-                <div class="chat_ib">
-                  <h5 class='toUser'>Bob Smith</h5> <span class="chat_date">Dec 25</span>
-                  <p>Test, which is a new approach to have all solutions 
-                    astrology under one roof.</p>
-                </div>
-              </div>
-            </div>
-            -->
+            
           </div><!--chat-->
 
         </div><!--people-->
 
         <div class="mesgs">
           <div class="msg_history" id="msg_history">
-            <!--
-            <div class="incoming_msg">
-              <div class="incoming_msg_img"> <img src="/img/img11.jpg" alt="sunil"> </div>
-              <div class="received_msg">
-                <div class="received_withd_msg">
-                  <p>Test which is a new approach to have all
-                    solutions</p>
-                  <span class="time_date"> 11:01 AM    |    June 9</span></div>
-              </div>
-            </div>
+           
 
-            <div class="outgoing_msg">
-              <div class="sent_msg">
-                <p>Test which is a new approach to have all
-                  solutions</p>
-                <span class="time_date"> 11:01 AM    |    June 9</span> </div>
-            </div>
 
-            <div class="outgoing_msg">
-              <div class="sent_msg">
-                <p>Test which is a new approach to have all
-                  solutions</p>
-                <span class="time_date"> 11:01 AM    |    June 9</span> </div>
-            </div>
-            
-            <div class="outgoing_msg">
-              <div class="sent_msg">
-                <p>Test which is a new approach to have all
-                  solutions</p>
-                <span class="time_date"> 11:01 AM    |    June 9</span> </div>
-            </div>
-
-            <div class="outgoing_msg">
-              <div class="sent_msg">
-                <p>Test which is a new approach to have all
-                  solutions</p>
-                <span class="time_date"> 11:01 AM    |    June 9</span> </div>
-            </div>
-
-            <div class="outgoing_msg">
-              <div class="sent_msg">
-                <p>Test which is a new approach to have all
-                  solutions</p>
-                <span class="time_date"> 11:01 AM    |    June 9</span> </div>
-            </div>
-
-            <div class="outgoing_msg">
-              <div class="sent_msg">
-                <p>Test which is a new approach to have all
-                  solutions</p>
-                <span class="time_date"> 11:01 AM    |    June 9</span> </div>
-            </div>
-
-            <div class="outgoing_msg">
-              <div class="sent_msg">
-                <p>Test which is a new approach to have all
-                  solutions</p>
-                <span class="time_date"> 11:01 AM    |    June 9</span> </div>
-            </div>
-
-            <div class="outgoing_msg">
-              <div class="sent_msg">
-                <p>Test which is a new approach to have all
-                  solutions</p>
-                <span class="time_date"> 11:01 AM    |    June 9</span> </div>
-            </div>
-
-            <div class="outgoing_msg">
-              <div class="sent_msg">
-                <p>Test which is a new approach to have all
-                  solutions</p>
-                <span class="time_date"> 11:01 AM    |    June 9</span> </div>
-            </div>
-
-            <div class="incoming_msg">
-              <div class="incoming_msg_img"> <img src="/img/img11.jpg" alt="sunil"> </div>
-              <div class="received_msg">
-                <div class="received_withd_msg">
-                  <p>Test, which is a new approach to have</p>
-                  <span class="time_date"> 11:01 AM    |    Yesterday</span></div>
-              </div>
-            </div>
-
-            <div class="outgoing_msg">
-              <div class="sent_msg">
-                <p>Apollo University, Delhi, India Test</p>
-                <span class="time_date"> 11:01 AM    |    Today</span> </div>
-            </div>
-
-            <div class="incoming_msg">
-              <div class="incoming_msg_img"> <img src="/img/img11.jpg" alt="sunil"> </div>
-              <div class="received_msg">
-                <div class="received_withd_msg">
-                  <p>We work directly with our designers and suppliers,
-                    and sell direct to you, which means quality, exclusive
-                    products, at a price anyone can afford.</p>
-                  <span class="time_date"> 11:01 AM    |    Today</span></div>
-              </div>
-            </div>
-            -->
           </div>
 
           <div class="type_msg">
